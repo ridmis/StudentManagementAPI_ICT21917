@@ -27,4 +27,17 @@ A Spring Boot REST API for managing students — includes CRUD operations, searc
 7. Run the project:
 
         mvn spring-boot:run
+
+
+# API Endpoints
+
+| Method     | Endpoint                               | Description                                       |
+| :--------- | :------------------------------------- | :------------------------------------------------ |
+| **POST**   | `/api/students`                        | Add a new student                                 |
+| **GET**    | `/api/students`                        | Get all students (pagination + sorting supported) |
+| **GET**    | `/api/students/{id}`                   | Get a student by ID                               |
+| **PUT**    | `/api/students/{id}`                   | Update a student                                  |
+| **DELETE** | `/api/students/{id}`                   | Delete a student                                  |
+| **GET**    | `/api/students/search?keyword={value}` | Search by name or course                          |
+
    
