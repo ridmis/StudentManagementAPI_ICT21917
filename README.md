@@ -1,43 +1,67 @@
-# 🎓 Student Management REST API
+🎓 Student Management REST API
 
 A Spring Boot REST API for managing students — includes CRUD operations, search, pagination, and Swagger documentation.
 
+⚙️ Setup Instructions
+1️⃣ Clone or Open the Project
 
-## ⚙️ Setup Instructions
+Clone this repository or unzip the project folder.
 
-1. **Clone or unzip** this project.
-2. Open it in VS Code 
-3. Create a MySQL database:
-        CREATE DATABASE studentdb;
+Open it in Visual Studio Code (or your preferred IDE).
 
-4. Create a table and Add the data
-        USE studentdb;
-        CREATE TABLE students(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100) NOT NULL,email VARCHAR(100) UNIQUE,age INT,course VARCHAR(100) NOT NULL);
-        SHOW TABLES;
-         INSERT INTO students (name, email, age,course)VALUES('Ridmi Sathsarani', 'ridmi@example.com', 24,'ic');
+2️⃣ Create the MySQL Database
 
-5. Update my application.properties:
+Run the following commands in your MySQL terminal or Workbench:
 
-        spring.datasource.url=jdbc:mysql://localhost:3306/studentdb
-        spring.datasource.username=root
-        spring.datasource.password=Ridmi123#
+CREATE DATABASE studentdb;
+USE studentdb;
 
-6. Run the project:
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    age INT,
+    course VARCHAR(100) NOT NULL
+);
 
-        mvn spring-boot:run
-7. 
+INSERT INTO students (name, email, age, course)
+VALUES ('Ridmi Sathsarani', 'ridmi@example.com', 24, 'ic');
 
-
-
-
-# API Endpoints
-
-Method	        Endpoint	                        Description
-POST	        /api/students	                    Add a new student
-GET	            /api/students	                    Get all students (pagination + sorting supported)
-GET	            /api/students/{id}	                Get student by ID
-PUT	            /api/students/{id}	                Update student
-DELETE	        /api/students/{id}	                Delete student
-GET	            /api/students/search?keyword=CS	    Search by name or course
+SHOW TABLES;
 
 
+3️⃣ Update application.properties
+
+In your src/main/resources/application.properties file, update the following values:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/studentdb
+spring.datasource.username=root
+spring.datasource.password=Ridmi123#
+
+# Optional Hibernate configurations
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+4️⃣ Run the Project
+
+Use Maven to start the Spring Boot application:
+
+mvn spring-boot:run
+
+
+The application will start on http://localhost:8080
+
+5️⃣ Access Swagger UI
+
+Open your browser and visit:
+👉 http://localhost:8080/swagger-ui/index.html
+
+🧩 API Endpoints
+Method	Endpoint	Description
+POST	/api/students	Add a new student
+GET	/api/students	Get all students (pagination + sorting supported)
+GET	/api/students/{id}	Get a student by ID
+PUT	/api/students/{id}	Update a student
+DELETE	/api/students/{id}	Delete a student
+GET	/api/students/search?keyword={value}	Search by name or course
