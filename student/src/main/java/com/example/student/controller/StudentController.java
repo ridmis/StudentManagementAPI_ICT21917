@@ -16,13 +16,13 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    // ✅ CREATE Student (POST)
+    //  CREATE Student (POST)
     @PostMapping
     public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
         return new ResponseEntity<>(studentService.createStudent(student), HttpStatus.CREATED);
     }
 
-    // ✅ GET All Students (with pagination & sorting support)
+    //  GET All Students (with pagination & sorting support)
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents(
             @RequestParam(defaultValue = "0") int page,
@@ -32,26 +32,26 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getAllStudents(page, size, sortBy));
     }
 
-    // ✅ GET Student by ID
+    //  GET Student by ID
     @GetMapping("/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
-    // ✅ UPDATE Student
+    //  UPDATE Student
     @PutMapping("/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable Long id, @Valid @RequestBody Student student) {
         return ResponseEntity.ok(studentService.updateStudent(id, student));
     }
 
-    // ✅ DELETE Student
+    //  DELETE Student
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
 
-    // ✅ SEARCH Student (by name or course)
+    //  SEARCH Student (by name or course)
     @GetMapping("/search")
     public ResponseEntity<List<Student>> searchStudents(@RequestParam String keyword) {
         return ResponseEntity.ok(studentService.searchByKeyword(keyword));
